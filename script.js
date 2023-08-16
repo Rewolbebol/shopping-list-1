@@ -22,25 +22,26 @@ function displayItems() {
 function onAddItemSubmit(e) {
     e.preventDefault()
 
-    const newItem = itemInput.value
-    // Validate Input
-    if (newItem === '') {
-        alert('Please add an item')
-        return
-    }
+  const newItem = itemInput.value;
+
+  // Validate Input
+  if (newItem === '') {
+    alert('Please add an item');
+    return;
+  }
 
 // Check for Edit mode
 if (isEditMode) {
     const itemToEdit = itemList.querySelector('.edit-mode')
 
-    removeItemFromStorage(itemToEdit.textContent)
-    itemToEdit.classList.remove('edit-mode')
-    itemToEdit.remove()
-    isEditMode = false
-} else {
-    if(checkIfItemExists(newItem)) {
-        alert('That item allready exists!')
-        return
+    removeItemFromStorage(itemToEdit.textContent);
+    itemToEdit.classList.remove('edit-mode');
+    itemToEdit.remove();
+    isEditMode = false;
+  } else {
+    if (checkIfItemExists(newItem)) {
+      alert('That item already exists!');
+      return;
     }
 }
 
@@ -131,11 +132,11 @@ function getItemsfromStorage() {
 }
 
 function onClickItem(e) {
-    if (e.target.parentElement.classList.contains('remove-item')) {
-        removeItem(e.target.parentElement.parentElement)
-    } else {
-        setItemToEdit(e.target)
-    }
+  if (e.target.parentElement.classList.contains('remove-item')) {
+    removeItem(e.target.parentElement.parentElement);
+  } else {
+    setItemToEdit(e.target);
+  }
 }
 
     function checkIfItemExists(item) {
@@ -159,14 +160,15 @@ function setItemToEdit(item) {
 
 // With event deligationtarget specific red cross to delete all section ! 
 function removeItem(item) {
-    if (confirm('Are you sure?')) {
-        // Remove item from DOM
-        item.remove()
-        // Remove item from Storage
-        removeItemFromStorage(item.textContent)
-        checkUI()
-    }
+  if (confirm('Are you sure?')) {
+    // Remove item from DOM
+    item.remove();
 
+    // Remove item from storage
+    removeItemFromStorage(item.textContent);
+
+    checkUI();
+  }
 }
 
 function removeItemFromStorage(item) {
